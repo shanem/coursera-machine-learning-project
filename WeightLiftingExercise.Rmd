@@ -5,10 +5,10 @@ date: "August 7, 2016"
 output: html_document
 ---
 
-# Introduction
+# Executive Summary
 
 Using the weight lifting exercises dataset from the Human Activity Recognition dataset (see http://groupware.les.inf.puc-rio.br/har), we attempt to predict whether the exercise was performed correctly or not.
-We explore multiple machine learning techniques, and ultimately use random forests to develop a very strong prediction algorithm.
+We explore multiple machine learning techniques, and ultimately use random forests to develop a very strong prediction algorithm, with roughly 97.5% accuracy.
 
 # Setup
 Libraries and seed
