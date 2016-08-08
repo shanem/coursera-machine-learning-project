@@ -1,2 +1,2 @@
-# See github pages for output:
+# See github pages for results:
 https://shanem.github.io/coursera-machine-learning-project/
