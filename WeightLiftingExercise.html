@@ -124,15 +124,18 @@ $(document).ready(function () {
 
 <div id="setup" class="section level1">
 <h1>Setup</h1>
+<p>Libraries and seed</p>
 <pre class="r"><code>library(caret)</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## Loading required package: ggplot2</code></pre>
 <pre class="r"><code>set.seed(123)</code></pre>
+<p>Utilities:</p>
 <pre class="r"><code>modelAccuracy &lt;- function(model, testData) {
   prediction &lt;- predict(model, testData)
   accuracy &lt;- sum(prediction == testData$classe) / nrow(testData)
   accuracy
 }</code></pre>
+<p>Loading data:</p>
 <pre class="r"><code>pmlTraining &lt;- read.csv(&quot;pml-training.csv&quot;)
 pmlTesting &lt;- read.csv(&quot;pml-testing.csv&quot;)</code></pre>
 </div>
@@ -166,9 +169,9 @@ print(paste(&quot;Random forest model accuracy: &quot;, modelAccuracy(rfModel, g
 <h1>Variable importance</h1>
 <p>Examining the top 20 most important predictors, as reported by the exploratory random forest:</p>
 <pre class="r"><code>varImp(rfModel)</code></pre>
-<p><code>roll_belt</code> and <code>yaw_belt</code> appear to be the two strongest predictor, so we generate a scatterplot to explore the relationship</p>
+<p><code>roll_belt</code> and <code>yaw_belt</code> appear to be the two strongest predictors, so we generate a scatterplot to explore the relationship</p>
 <pre class="r"><code>qplot(roll_belt, yaw_belt, colour = classe, data = exploration)</code></pre>
-<p>We see a few very clear trends with these two predictors alone</p>
+<p>We see some very clear trends with these two predictors alone</p>
 </div>
 <div id="training-final-model" class="section level1">
 <h1>Training final model</h1>
@@ -184,7 +187,7 @@ validation &lt;- goodPmlTraining[-trainingIndices, ]</code></pre>
 <h1>Validation</h1>
 <p>We evaluate our model against the validation data set</p>
 <pre class="r"><code>print(paste(&quot;Accuracy on validation data set: &quot;, modelAccuracy(finalModel, validation)))</code></pre>
-<p>We expect the model’s accuracy on the validation data set to be a very good estimate of out of sample error rate</p>
+<p>We expect the model’s accuracy on the validation data set to be a very good estimate of out of sample error rate, because it’s a large sample with no overlap with the training set</p>
 </div>
 <div id="testing" class="section level1">
 <h1>Testing</h1>

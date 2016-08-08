@@ -6,11 +6,13 @@ output: html_document
 ---
 
 # Setup
+Libraries and seed
 ```{r}
 library(caret)
 set.seed(123)
 ```
 
+Utilities:
 ```{r}
 modelAccuracy <- function(model, testData) {
   prediction <- predict(model, testData)
@@ -19,7 +21,7 @@ modelAccuracy <- function(model, testData) {
 }
 ```
 
-
+Loading data:
 ```{r}
 pmlTraining <- read.csv("pml-training.csv")
 pmlTesting <- read.csv("pml-testing.csv")
@@ -82,13 +84,13 @@ Examining the top 20 most important predictors, as reported by the exploratory r
 varImp(rfModel)
 ```
 
-`roll_belt` and `yaw_belt` appear to be the two strongest predictor, so we generate a scatterplot to explore the relationship
+`roll_belt` and `yaw_belt` appear to be the two strongest predictors, so we generate a scatterplot to explore the relationship
 
 ```{r}
 qplot(roll_belt, yaw_belt, colour = classe, data = exploration)
 ```
 
-We see a few very clear trends with these two predictors alone
+We see some very clear trends with these two predictors alone
 
 # Training final model
 
@@ -115,7 +117,7 @@ We evaluate our model against the validation data set
 print(paste("Accuracy on validation data set: ", modelAccuracy(finalModel, validation)))
 ```
 
-We expect the out of sample error rate to be roughly 1%
+We expect the model's accuracy on the validation data set to be a very good estimate of out of sample error rate, because it's a large sample with no overlap with the training set
 
 # Testing
 ```{r}
