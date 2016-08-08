@@ -121,7 +121,7 @@ We expect the model's accuracy on the validation data set to be a very good esti
 
 # Testing
 ```{r}
-testPredictions <- predict(rfModel, testing[, colnames(rfModel$trainingData)[0:(length(rfModel$trainingData) - 1)]])
+testPredictions <- predict(finalModel, pmlTesting[, colnames(finalModel$trainingData)[0:(length(finalModel$trainingData) - 1)]])
 print("Test predictions:")
 data.frame(testPredictions)
 ```
